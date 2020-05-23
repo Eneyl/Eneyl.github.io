@@ -161,9 +161,10 @@ $(function(){
     $('.qestion-text').remove();
     $('.answer-item').remove();
     numberQuestion++;
-    if(numberQuestion < questionElementArr.length)
+    if(numberQuestion < questionElementArr.length){
       outputQuestion(numberQuestion);
-    else{
+      $('#answer-btn').bind('click', checkAnswer);
+    }else{
       resetTimer()
       $('#answer-btn').hide();
       $('#refresh-btn').show();
@@ -172,7 +173,8 @@ $(function(){
       
   }
  
-  function checkAnswer(){
+  function checkAnswer(e){
+    let waitTime = 2000;
     let selectedAnswer = Array.from($('.select-answer')),
         isTrueSelected = selectedAnswer.every((item, i) => $(item).attr('value') == trueAnswerArr[i]),
         answerOptionsArr = Array.from($('.answer-item__text'));
@@ -189,14 +191,15 @@ $(function(){
       
     });
     resetTimer();
-    setTimeout(nextQuestion, 2000);
+    $('#answer-btn').unbind('click', checkAnswer);
+    setTimeout(nextQuestion, waitTime);
   }
 
   $(_answerOptions).on('click', function (event) {
     if($(event.target).hasClass('answer-item__text'))
       $(event.target).toggleClass('select-answer');
   })
-  $('#answer-btn').on('click', checkAnswer);
+  $('#answer-btn').bind('click', checkAnswer);
   $('#answer-btn').on('mouseover', ()=> $('#answer-btn .cls-34').css({fill: '#00fff0'}));
   $('#answer-btn').on('mouseout', ()=> $('#answer-btn .cls-34').css({fill: 'url(#Безымянный_градиент_19)'}));
   $('#start-btn').on('mouseover', ()=> $('#start-btn .cls-34').css({fill: '#00fff0'}));
