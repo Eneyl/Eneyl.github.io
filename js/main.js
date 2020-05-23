@@ -170,7 +170,6 @@ $(function(){
       $('#refresh-btn').show();
       resultGame();
     }
-      
   }
  
   function checkAnswer(e){
