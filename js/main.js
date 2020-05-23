@@ -86,7 +86,7 @@ $(function(){
   }
 
   function resultGame() {
-    Player.score > Computer.score ? $('.status-game').text('Победа') : $('.status-game').text('Проигрыш');
+    Player.score > Computer.score ? $('.status-game').text('Победа') : $('.status-game').text('Поражение');
     $('.popup-game-status').fadeIn();
   }
   
@@ -206,6 +206,7 @@ $(function(){
   $('#refresh-btn').on('mouseover', ()=> $('#refresh-btn .cls-34').css({fill: '#00fff0'}));
   $('#refresh-btn').on('mouseout', ()=> $('#refresh-btn .cls-34').css({fill: 'url(#Безымянный_градиент_19)'}));
   $('#refresh-btn').on('click', ()=> location = 'index.html');
+
   $('#start-btn').on('click', function () {
     getData()
       .then(()=>{
